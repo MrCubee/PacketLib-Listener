@@ -2,10 +2,8 @@ package fr.mrcubee.packet.bukkit.event;
 
 import fr.mrcubee.packet.bukkit.Packets;
 import org.bukkit.event.Cancellable;
-import org.bukkit.event.Event;
-import org.bukkit.event.HandlerList;
 
-public abstract class PacketListenerEvent extends Event implements Cancellable {
+public abstract class PacketListenerEvent implements Cancellable {
 
     private final Packets packetType;
     private final Object rawPacket;
@@ -17,10 +15,18 @@ public abstract class PacketListenerEvent extends Event implements Cancellable {
         this.cancelled = false;
     }
 
+    /**
+     * @since 1.0
+     * @return Returns the type of the packet.
+     */
     public Packets getPacketType() {
         return this.packetType;
     }
 
+    /**
+     * @since 1.0
+     * @return Return the raw packet.
+     */
     public Object getRawPacket() {
         return this.rawPacket;
     }
@@ -34,10 +40,4 @@ public abstract class PacketListenerEvent extends Event implements Cancellable {
     public boolean isCancelled() {
         return this.cancelled;
     }
-
-    @Override
-    public abstract HandlerList getHandlers();
-
-    @Override
-    public abstract String getEventName();
 }
