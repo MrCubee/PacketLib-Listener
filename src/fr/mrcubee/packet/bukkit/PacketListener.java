@@ -145,6 +145,8 @@ public class PacketListener extends ChannelDuplexHandler {
         }
         channel.eventLoop().submit(() -> {
             channel.pipeline().remove(PacketListener.HANDLER_NAME + player.getName());
+        });
+        channel.eventLoop().submit(() -> {
             channel.pipeline().addBefore("packet_handler", PacketListener.HANDLER_NAME + player.getName(), new PacketListener(player));
         });
     }
